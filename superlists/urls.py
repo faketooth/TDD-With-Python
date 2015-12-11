@@ -16,12 +16,15 @@ Including another URLconf
 
 Changes from Django1.7:
     http://stackoverflow.com/questions/34096424/django-support-for-string-view-arguments-to-url-is-deprecated-and-will-be-rem
+	http://redsymbol.net/articles/django-attributeerror-str-object-no-attribute-resolve/
+	http://stackoverflow.com/questions/7020523/str-object-has-no-attribute-resolve-when-access-admin-site
 """
 from django.conf.urls import url
 from django.contrib import admin
 from lists import views
 
-# Holy Mother Fuck. Commented this ''. It's completely different in django1.9
+# Holy Mother of God. Commented this ''. It's completely different in django1.9
+# urlpatterns should be a Python list of url() instances. yes. '' is not instance of url()
 urlpatterns = [
     #'',
     url(r'^$', views.home_page),
