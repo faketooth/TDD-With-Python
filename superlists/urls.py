@@ -13,10 +13,16 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
+
+Changes from Django1.7:
+    http://stackoverflow.com/questions/34096424/django-support-for-string-view-arguments-to-url-is-deprecated-and-will-be-rem
 """
 from django.conf.urls import url
 from django.contrib import admin
+from lists import views
 
+# Holy Mother Fuck. Commented this ''. It's completely different in django1.9
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #'',
+    url(r'^$', views.home_page),
 ]
