@@ -40,9 +40,31 @@ class HomePageTest(TestCase):
 		request.POST['item_text'] = 'A new list item'
 		
 		response = home_page(request)
-		self.assertIn('A new list item', response.content.decode())
 		
+		self.assertEqual(Item.objects.count(), 1)
+		new_item = Item.objects.first()
+		self.assertEqual(new_item.text, 'A new list item')
 		
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], '/')
+		
+		"""self.assertIn('A new list item', response.content.decode())
+		c ={'new_item_text': 'A new list item'}
+		c.update(csrf(request))
+		expected_html = render_to_string(
+			'home.html',
+			c
+		)
+		
+		self.assertEqual(response.content.decode(), expected_html)"""
+	
+	def test_home_page_only_saves_items_when_necessary(self):
+		request = HttpRequest()
+		home_page(request)
+		self.assertEqual(Item.objects.count(), 0)
+	
+	
+	
 class ItemModelTest(TestCase):
 	
 	def test_saving_and_retriving_items(self):
