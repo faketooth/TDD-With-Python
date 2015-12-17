@@ -45,9 +45,6 @@ class HomePageTest(TestCase):
 		new_item = Item.objects.first()
 		self.assertEqual(new_item.text, 'A new list item')
 		
-		self.assertEqual(response.status_code, 302)
-		self.assertEqual(response['location'], '/')
-		
 		"""self.assertIn('A new list item', response.content.decode())
 		c ={'new_item_text': 'A new list item'}
 		c.update(csrf(request))
@@ -57,6 +54,17 @@ class HomePageTest(TestCase):
 		)
 		
 		self.assertEqual(response.content.decode(), expected_html)"""
+	
+	def test_home_page_redirects_after_POST(self):
+		request = HttpRequest()
+		request.method = 'POST'
+		request.POST['item_text'] = 'A new list item'
+		
+		response = home_page(request)
+		
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], '/')
+		
 	
 	def test_home_page_only_saves_items_when_necessary(self):
 		request = HttpRequest()
