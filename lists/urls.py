@@ -19,14 +19,14 @@ Changes from Django1.7:
 	http://redsymbol.net/articles/django-attributeerror-str-object-no-attribute-resolve/
 	http://stackoverflow.com/questions/7020523/str-object-has-no-attribute-resolve-when-access-admin-site
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
 from lists import views
 
 # Holy Mother of God. Commented this ''. It's completely different in django1.9
 # urlpatterns should be a Python list of url() instances. yes. '' is not instance of url()
 urlpatterns = [
-    #'',
-    url(r'^$', views.home_page),
-	url(r'^lists/', include('lists.urls')),
+	url(r'^(\d+)/$', views.view_list),
+	url(r'^(\d+)/add_item$', views.add_item),
+	url(r'^new$', views.new_list),
 ]
