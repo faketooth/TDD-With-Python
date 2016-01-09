@@ -29,9 +29,6 @@ class HomePageTest(TestCase):
 			'home.html',
 			c
 		)
-		#print("content:\n %s\n" % response.content.decode())
-		#print(expected_html)
-		#self.assertIn('A new list item', response.content.decode())
 		self.assertEqual(response.content.decode(), expected_html)
 
 		
@@ -45,21 +42,6 @@ class HomePageTest(TestCase):
 		
 		self.assertEqual(response.content.decode(), expected_html)"""
 		
-	
-	"""def test_home_page_only_saves_items_when_necessary(self):
-		request = HttpRequest()
-		home_page(request)
-		self.assertEqual(Item.objects.count(), 0)"""
-	
-	"""def test_home_page_displays_all_list_items(self):
-		Item.objects.create(text='itemey 1')
-		Item.objects.create(text='itemey 2')
-		
-		request = HttpRequest()
-		response = home_page(request)
-		
-		self.assertIn('itemey 1', response.content.decode())
-		self.assertIn('itemey 2', response.content.decode())"""
 	
 	
 class ItemModelTest(TestCase):
