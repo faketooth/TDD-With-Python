@@ -16,9 +16,6 @@ class HomePageTest(TestCase):
 	def test_home_page_returns_correct_html(self):
 		request = HttpRequest()
 		response = home_page(request)
-		#print (repr(response.content))
-		#self.assertTrue(response.content.startswith(b'<html>'))
-		#self.assertTrue(response.content.endswith(b'</html>'))
 		
 		# http://s1n4.github.io/2013/05/12/django-csrf_token-when-using-render_to_string/
 		c = {'new_item_text': 'A new list item'}
